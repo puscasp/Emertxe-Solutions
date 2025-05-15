@@ -41,6 +41,8 @@ Test Case 4: N > 220
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <limits.h>
 
 int main(int argc, char **argv) {
 
@@ -49,12 +51,17 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    int n = atoi(argv[1]);
+    char *endptr;
+    errno = 0; 
+    long val = strtol(argv[1], &endptr, 10);
 
-    if (n == 0) {
-        printf("Error, argument provdided must be an integer > 0.\n");
+    if (errno != 0 || *endptr != '\0' || val <= 0 || val > INT_MAX) {
+        printf("Error, argument provided must be an integer > 0.\n");
         return 1;
     }
+
+    int n = (int) val;
+
 
     int sum = 0;
     for(int i = 1; i < n; i++) {
