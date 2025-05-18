@@ -7,3 +7,12 @@ A2:
 
 A3:
 	gcc -o A3 A3.c
+A4:
+	gcc -o A4 A4.c
+
+A5:
+	gcc -o A4 A4.c
+
+
+A6:
+	gcc -o A4 A4.cs
